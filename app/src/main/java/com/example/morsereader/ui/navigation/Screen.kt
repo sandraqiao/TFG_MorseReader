@@ -3,7 +3,6 @@ package com.example.morsereader.ui.navigation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoStories
 import androidx.compose.material.icons.filled.CameraAlt
-import androidx.compose.material.icons.filled.Campaign
 import androidx.compose.material.icons.filled.Highlight
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.ui.graphics.vector.ImageVector
