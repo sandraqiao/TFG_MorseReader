@@ -15,6 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.morsereader.ui.navigation.Screen
+import com.example.morsereader.ui.theme.CardBackground
+import com.example.morsereader.ui.theme.DarkText
 
 @Composable
 fun TopTitleBanner(navController: NavController) {
@@ -29,6 +31,7 @@ fun TopTitleBanner(navController: NavController) {
         modifier = Modifier
             .fillMaxWidth()
             .statusBarsPadding(),
+        color = CardBackground,
         tonalElevation = 3.dp
     ) {
         Row(
@@ -36,12 +39,14 @@ fun TopTitleBanner(navController: NavController) {
         ) {
             Icon(
                 imageVector = currentScreen.icon,
-                contentDescription = currentScreen.title
+                contentDescription = currentScreen.title,
+                tint = DarkText
             )
 
             Text(
                 text = currentScreen.title,
                 style = MaterialTheme.typography.titleLarge,
+                color = DarkText,
                 modifier = Modifier.padding(start = 16.dp)
             )
         }

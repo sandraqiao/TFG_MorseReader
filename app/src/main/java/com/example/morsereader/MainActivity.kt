@@ -14,7 +14,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.morsereader.ui.navigation.BottomNavBar
 import com.example.morsereader.ui.navigation.Screen
-import com.example.morsereader.ui.screens.*
+import com.example.morsereader.ui.screens.GenerateScreen
+import com.example.morsereader.ui.screens.HomeScreen
+import com.example.morsereader.ui.screens.InfoScreen
+import com.example.morsereader.ui.screens.InterpretScreen
+import com.example.morsereader.ui.screens.TopTitleBanner
 import com.example.morsereader.ui.theme.MorseReaderTheme
 
 class MainActivity : ComponentActivity() {
