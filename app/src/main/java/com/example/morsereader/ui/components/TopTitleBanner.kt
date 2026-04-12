@@ -1,4 +1,4 @@
-package com.example.morsereader.ui.screens
+package com.example.morsereader.ui.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth

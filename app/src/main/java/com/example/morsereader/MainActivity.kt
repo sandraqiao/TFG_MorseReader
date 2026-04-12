@@ -18,7 +18,7 @@ import com.example.morsereader.ui.screens.GenerateScreen
 import com.example.morsereader.ui.screens.HomeScreen
 import com.example.morsereader.ui.screens.InfoScreen
 import com.example.morsereader.ui.screens.InterpretScreen
-import com.example.morsereader.ui.screens.TopTitleBanner
+import com.example.morsereader.ui.components.TopTitleBanner
 import com.example.morsereader.ui.theme.MorseReaderTheme
 
 class MainActivity : ComponentActivity() {

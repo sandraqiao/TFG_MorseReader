@@ -1,5 +1,7 @@
 package com.example.morsereader.morse
 
+import java.util.Locale
+
 object MorseTranslator {
 
     private val morseMap = mapOf(
@@ -49,7 +51,7 @@ object MorseTranslator {
     )
 
     fun textToMorse(text: String): String {
-        return text.uppercase().map { char ->
+        return text.uppercase(Locale.ROOT).map { char ->
             if (char == ' ') {
                 "/" // separador de palabra
             } else {

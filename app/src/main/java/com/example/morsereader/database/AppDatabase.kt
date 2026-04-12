@@ -1,13 +1,15 @@
-package com.example.morsereader.morse
+package com.example.morsereader.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.morsereader.morse.MorseMessage
 
 @Database(entities = [MorseMessage::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun userDao(): MorseDao
+
+    abstract fun morseDao(): MorseDao
 
     companion object {
         @Volatile
@@ -18,7 +20,7 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "app_database"
+                    "morse_db"
                 ).build()
                 INSTANCE = instance
                 instance
