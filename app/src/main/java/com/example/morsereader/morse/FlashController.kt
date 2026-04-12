@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 class FlashController(context: Context) {
+    private var isLocked = false
     private val _isPlaying = MutableStateFlow(false)
     val isPlaying: StateFlow<Boolean> = _isPlaying
     private val cameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
@@ -24,11 +25,11 @@ class FlashController(context: Context) {
     var pause = 200L
 
     fun emitMorse(word: String) {
+        if (isLocked) return
         currentJob?.cancel()
-
         currentJob = scope.launch {
+            isLocked = true
             _isPlaying.value = true
-
             for (char in word) {
                 if (!isActive) break
 
@@ -39,8 +40,8 @@ class FlashController(context: Context) {
                     '/' -> delay(pause * 7)
                 }
             }
-
             _isPlaying.value = false
+            isLocked = false
             flashOff()
         }
     }
@@ -48,6 +49,7 @@ class FlashController(context: Context) {
     fun stop() {
         currentJob?.cancel()
         currentJob = null
+        isLocked = false
         _isPlaying.value = false
         flashOff()
     }
