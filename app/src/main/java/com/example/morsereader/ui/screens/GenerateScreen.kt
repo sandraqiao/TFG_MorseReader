@@ -1,6 +1,7 @@
 package com.example.morsereader.ui.screens
 
 import MorseViewModel
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -22,6 +23,11 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.ui.Alignment
 import com.example.morsereader.morse.MorseMessage
 import com.example.morsereader.ui.components.MessageDialog
+import androidx.compose.material3.*
+import androidx.compose.material3.SwipeToDismissBox
+import androidx.compose.material3.SwipeToDismissBoxValue
+import androidx.compose.material3.rememberSwipeToDismissBoxState
+import androidx.compose.ui.graphics.Color
 
 
 @Composable
@@ -42,22 +48,57 @@ fun GenerateScreen(modifier: Modifier = Modifier) {
                 .padding(16.dp)
         ) {
             LazyColumn {
-                items(messages) { message ->
+                items(messages, key = { it.id }) { message ->
 
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 8.dp),
-                        onClick = {
-                            val morse = MorseTranslator.textToMorse(message.text)
-                            flashController.emitMorse(morse)
+                    val dismissState = rememberSwipeToDismissBoxState(
+                        confirmValueChange = { value ->
+                            if (value == SwipeToDismissBoxValue.EndToStart ||
+                                value == SwipeToDismissBoxValue.StartToEnd
+                            ) {
+                                viewModel.delete(message)
+                                true
+                            } else {
+                                false
+                            }
+                        }
+                    )
+                    SwipeToDismissBox(
+                        state = dismissState,
+                        backgroundContent = {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(8.dp)
+                                    .background(
+                                        color = MaterialTheme.colorScheme.error,
+                                        shape = MaterialTheme.shapes.medium
+                                    ),
+                                contentAlignment = Alignment.CenterEnd
+                            ) {
+                                Text(
+                                    text = "Borrar",
+                                    color = MaterialTheme.colorScheme.onError,
+                                    modifier = Modifier.padding(end = 16.dp)
+                                )
+                            }
                         }
                     ) {
-                        Column(modifier = Modifier.padding(16.dp)) {
 
-                            Text(text = message.title)
-                            Spacer(modifier = Modifier.height(4.dp))
-                            Text(text = message.text)
+                        Card(
+                            shape = MaterialTheme.shapes.medium,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 8.dp),
+                            onClick = {
+                                val morse = MorseTranslator.textToMorse(message.text)
+                                flashController.emitMorse(morse)
+                            }
+                        ) {
+                            Column(modifier = Modifier.padding(16.dp)) {
+                                Text(text = message.title)
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(text = message.text)
+                            }
                         }
                     }
                 }
