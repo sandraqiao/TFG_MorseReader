@@ -35,6 +35,7 @@ fun GenerateScreen(modifier: Modifier = Modifier) {
 
     val context = LocalContext.current
     val flashController = remember { FlashController(context) }
+    val isPlaying by flashController.isPlaying.collectAsState()
 
     val viewModel: MorseViewModel = viewModel()
     val messages by viewModel.messages.collectAsState(initial = emptyList())
@@ -123,6 +124,22 @@ fun GenerateScreen(modifier: Modifier = Modifier) {
                     showDialog = false
                 }
             )
+        }
+
+        if (isPlaying) {
+
+            FloatingActionButton(
+                onClick = { flashController.stop() },
+                containerColor = MaterialTheme.colorScheme.secondary,
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = "Parar reproducción",
+                    modifier = Modifier.padding(horizontal = 8.dp)
+                )
+            }
         }
     }
 }

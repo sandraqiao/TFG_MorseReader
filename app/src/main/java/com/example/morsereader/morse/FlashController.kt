@@ -6,10 +6,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 class FlashController(context: Context) {
-
+    private val _isPlaying = MutableStateFlow(false)
+    val isPlaying: StateFlow<Boolean> = _isPlaying
     private val cameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
+    private var currentJob: Job? = null
     val cameraId = cameraManager.cameraIdList.firstOrNull { id ->
         cameraManager.getCameraCharacteristics(id)
             .get(android.hardware.camera2.CameraCharacteristics.FLASH_INFO_AVAILABLE) == true
@@ -18,16 +24,32 @@ class FlashController(context: Context) {
     var pause = 200L
 
     fun emitMorse(word: String) {
-        scope.launch {
+        currentJob?.cancel()
+
+        currentJob = scope.launch {
+            _isPlaying.value = true
+
             for (char in word) {
+                if (!isActive) break
+
                 when (char) {
                     '.' -> punto()
                     '-' -> raya()
-                    ' ' -> delay(pause * 3) // separación letras
-                    '/' -> delay(pause * 7) // separación palabras
+                    ' ' -> delay(pause * 3)
+                    '/' -> delay(pause * 7)
                 }
             }
+
+            _isPlaying.value = false
+            flashOff()
         }
+    }
+
+    fun stop() {
+        currentJob?.cancel()
+        currentJob = null
+        _isPlaying.value = false
+        flashOff()
     }
 
     private suspend fun punto() {
