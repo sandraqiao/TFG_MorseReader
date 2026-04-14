@@ -32,7 +32,6 @@ class FlashController(context: Context) {
             _isPlaying.value = true
             for (char in word) {
                 if (!isActive) break
-
                 when (char) {
                     '.' -> punto()
                     '-' -> raya()

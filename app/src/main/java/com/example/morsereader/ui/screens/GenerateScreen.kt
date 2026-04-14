@@ -28,6 +28,7 @@ import androidx.compose.material3.SwipeToDismissBox
 import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 
 
 @Composable
@@ -42,7 +43,6 @@ fun GenerateScreen(modifier: Modifier = Modifier) {
 
     Box(modifier = modifier) {
         var showDialog by remember { mutableStateOf(false) }
-
         Column(
             modifier = modifier
                 .fillMaxSize()
@@ -84,21 +84,28 @@ fun GenerateScreen(modifier: Modifier = Modifier) {
                             }
                         }
                     ) {
-
                         Card(
                             shape = MaterialTheme.shapes.medium,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 8.dp),
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.tertiaryContainer
+                            ),
                             onClick = {
                                 val morse = MorseTranslator.textToMorse(message.text)
                                 flashController.emitMorse(morse)
                             }
                         ) {
                             Column(modifier = Modifier.padding(16.dp)) {
-                                Text(text = message.title)
+                                Text(text = message.title,
+                                    color = MaterialTheme.colorScheme.onTertiaryContainer,
+                                    fontWeight = FontWeight.Bold
+                                )
                                 Spacer(modifier = Modifier.height(4.dp))
-                                Text(text = message.text)
+                                Text(text = message.text,
+                                    color = MaterialTheme.colorScheme.onTertiaryContainer
+                                )
                             }
                         }
                     }
@@ -109,6 +116,8 @@ fun GenerateScreen(modifier: Modifier = Modifier) {
             onClick = {
                 showDialog = true
             },
+            containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+            contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)
@@ -127,10 +136,9 @@ fun GenerateScreen(modifier: Modifier = Modifier) {
         }
 
         if (isPlaying) {
-
             FloatingActionButton(
                 onClick = { flashController.stop() },
-                containerColor = MaterialTheme.colorScheme.secondary,
+                containerColor = MaterialTheme.colorScheme.tertiary,
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(16.dp)

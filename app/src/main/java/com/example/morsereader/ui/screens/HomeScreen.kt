@@ -16,13 +16,3 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         Text(Screen.Home.title)
     }
 }
-
-/*MenuButton("Generate Morse") {
-            navController.navigate(Screen.Generate.route)
-        }
-        MenuButton("Interpret Morse") {
-            navController.navigate(Screen.Interpret.route)
-        }
-        MenuButton("About") {
-            navController.navigate(Screen.Info.route)
-       */

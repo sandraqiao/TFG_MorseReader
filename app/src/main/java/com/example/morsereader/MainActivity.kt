@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
@@ -19,15 +20,16 @@ import com.example.morsereader.ui.screens.HomeScreen
 import com.example.morsereader.ui.screens.InfoScreen
 import com.example.morsereader.ui.screens.InterpretScreen
 import com.example.morsereader.ui.components.TopTitleBanner
-import com.example.morsereader.ui.theme.MorseReaderTheme
+import com.example.morsereader.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MorseReaderTheme {
-                Surface(modifier = Modifier.fillMaxSize()) {
+            AppTheme {
+                Surface(modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background) {
                     val navController = rememberNavController()
                     Scaffold(
                         topBar = { TopTitleBanner(navController) },

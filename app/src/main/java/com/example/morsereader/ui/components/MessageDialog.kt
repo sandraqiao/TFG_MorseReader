@@ -17,17 +17,33 @@ fun MessageDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         confirmButton = {
-            Button(onClick = {
-                if (title.isNotBlank() && text.isNotBlank()) {
-                    onAdd(title, text)
-                }
-            }) {
-                Text("Guardar")
+            Button(
+                onClick = {
+                    if (title.isNotBlank() && text.isNotBlank()) {
+                        onAdd(title, text)
+                    }
+                },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.tertiaryContainer
+                )
+            ) {
+                Text(
+                    "Guardar",
+                    color = MaterialTheme.colorScheme.onTertiaryContainer
+                )
             }
         },
         dismissButton = {
-            Button(onClick = onDismiss) {
-                Text("Cancelar")
+            Button(
+                onClick = onDismiss,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.errorContainer
+                )
+            ) {
+                Text(
+                    "Cancelar",
+                    color = MaterialTheme.colorScheme.onErrorContainer
+                )
             }
         },
         title = { Text("Nueva tarjeta") },

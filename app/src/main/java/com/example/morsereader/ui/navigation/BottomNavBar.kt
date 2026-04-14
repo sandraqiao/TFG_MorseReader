@@ -1,6 +1,7 @@
 package com.example.morsereader.ui.navigation
 
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
@@ -9,9 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.morsereader.ui.theme.CardBackground
-import com.example.morsereader.ui.theme.DarkText
-import com.example.morsereader.ui.theme.PurplePrimary
 
 @Composable
 fun BottomNavBar(navController: NavController) {
@@ -19,17 +17,17 @@ fun BottomNavBar(navController: NavController) {
     val currentRoute = navBackStackEntry?.destination?.route
 
     NavigationBar(
-        containerColor = CardBackground
+        containerColor = MaterialTheme.colorScheme.tertiary
     ) {
         Screen.bottomNavItems.forEach { screen ->
             NavigationBarItem(
-                icon = { Icon(screen.icon, contentDescription = screen.title, tint = DarkText) },
-                label = { Text(screen.title, color = DarkText) },
+                icon = { Icon(screen.icon, contentDescription = screen.title, tint = MaterialTheme.colorScheme.onSurface) },
+                label = { Text(screen.title, color = MaterialTheme.colorScheme.onSurface) },
                 selected = currentRoute == screen.route,
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = PurplePrimary,
-                    selectedTextColor = PurplePrimary,
-                    indicatorColor = PurplePrimary
+                    selectedIconColor = MaterialTheme.colorScheme.onTertiary,
+                    selectedTextColor = MaterialTheme.colorScheme.onTertiary,
+                    indicatorColor = MaterialTheme.colorScheme.onTertiary
                 ),
                 onClick = {
                     if (currentRoute != screen.route) {
