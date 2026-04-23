@@ -29,7 +29,7 @@ fun TopTitleBanner(navController: NavController) {
         modifier = Modifier
             .fillMaxWidth()
             .statusBarsPadding(),
-        color = MaterialTheme.colorScheme.tertiary,
+        color = MaterialTheme.colorScheme.primary,
         tonalElevation = 3.dp
     ) {
         Row(

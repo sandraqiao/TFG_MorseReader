@@ -16,7 +16,6 @@ fun InfoScreen(modifier: Modifier = Modifier) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.tertiary)
     )
 
     /*Box(

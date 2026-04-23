@@ -17,7 +17,7 @@ fun BottomNavBar(navController: NavController) {
     val currentRoute = navBackStackEntry?.destination?.route
 
     NavigationBar(
-        containerColor = MaterialTheme.colorScheme.tertiary
+        containerColor = MaterialTheme.colorScheme.primary
     ) {
         Screen.bottomNavItems.forEach { screen ->
             NavigationBarItem(
@@ -25,9 +25,9 @@ fun BottomNavBar(navController: NavController) {
                 label = { Text(screen.title, color = MaterialTheme.colorScheme.onSurface) },
                 selected = currentRoute == screen.route,
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = MaterialTheme.colorScheme.onTertiary,
-                    selectedTextColor = MaterialTheme.colorScheme.onTertiary,
-                    indicatorColor = MaterialTheme.colorScheme.onTertiary
+                    selectedIconColor = MaterialTheme.colorScheme.onPrimary,
+                    selectedTextColor = MaterialTheme.colorScheme.onPrimary,
+                    indicatorColor = MaterialTheme.colorScheme.onPrimary
                 ),
                 onClick = {
                     if (currentRoute != screen.route) {

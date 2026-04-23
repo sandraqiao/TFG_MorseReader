@@ -90,7 +90,7 @@ fun GenerateScreen(modifier: Modifier = Modifier) {
                                 .fillMaxWidth()
                                 .padding(vertical = 8.dp),
                             colors = CardDefaults.cardColors(
-                                containerColor = MaterialTheme.colorScheme.tertiaryContainer
+                                containerColor = MaterialTheme.colorScheme.primaryContainer
                             ),
                             onClick = {
                                 val morse = MorseTranslator.textToMorse(message.text)
@@ -99,12 +99,12 @@ fun GenerateScreen(modifier: Modifier = Modifier) {
                         ) {
                             Column(modifier = Modifier.padding(16.dp)) {
                                 Text(text = message.title,
-                                    color = MaterialTheme.colorScheme.onTertiaryContainer,
+                                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                                     fontWeight = FontWeight.Bold
                                 )
                                 Spacer(modifier = Modifier.height(4.dp))
                                 Text(text = message.text,
-                                    color = MaterialTheme.colorScheme.onTertiaryContainer
+                                    color = MaterialTheme.colorScheme.onPrimaryContainer
                                 )
                             }
                         }
@@ -116,8 +116,8 @@ fun GenerateScreen(modifier: Modifier = Modifier) {
             onClick = {
                 showDialog = true
             },
-            containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-            contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)
@@ -138,7 +138,7 @@ fun GenerateScreen(modifier: Modifier = Modifier) {
         if (isPlaying) {
             FloatingActionButton(
                 onClick = { flashController.stop() },
-                containerColor = MaterialTheme.colorScheme.tertiary,
+                containerColor = MaterialTheme.colorScheme.primary,
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(16.dp)

@@ -22,27 +22,19 @@ fun MessageDialog(
                     if (title.isNotBlank() && text.isNotBlank()) {
                         onAdd(title, text)
                     }
-                },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.tertiaryContainer
-                )
+                }
             ) {
                 Text(
-                    "Guardar",
-                    color = MaterialTheme.colorScheme.onTertiaryContainer
+                    "Guardar"
                 )
             }
         },
         dismissButton = {
             Button(
-                onClick = onDismiss,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.errorContainer
-                )
+                onClick = onDismiss
             ) {
                 Text(
-                    "Cancelar",
-                    color = MaterialTheme.colorScheme.onErrorContainer
+                    "Cancelar"
                 )
             }
         },
