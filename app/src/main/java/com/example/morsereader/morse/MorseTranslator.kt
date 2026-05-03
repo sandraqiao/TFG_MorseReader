@@ -3,7 +3,6 @@ package com.example.morsereader.morse
 import java.util.Locale
 
 object MorseTranslator {
-
     private val morseMap = mapOf(
         'A' to ".-",
         'B' to "-...",
@@ -49,6 +48,9 @@ object MorseTranslator {
         '?' to "..--..",
         '!' to "-.-.--"
     )
+    private val reverseMap = morseMap.entries.associate { (key, value) ->
+        value to key
+    }
 
     fun textToMorse(text: String): String {
         return text.uppercase(Locale.ROOT).map { char ->
@@ -58,5 +60,14 @@ object MorseTranslator {
                 morseMap[char] ?: ""
             }
         }.joinToString(" ")
+    }
+
+    fun morseToText(morse: String): String {
+        return morse.split(" ").map { code ->
+            when (code) {
+                "/" -> " "
+                else -> reverseMap[code] ?: ""
+            }
+        }.joinToString("")
     }
 }

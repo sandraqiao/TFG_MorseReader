@@ -257,7 +257,7 @@ val unspecified_scheme = ColorFamily(
 
 @Composable
 fun AppTheme(
-    // SE COMENTA PARA NO TENER MODO OSCURO EN LA APP
+    // SE COMENTA PARA NO TENER MODO OSCURO EN LA APP. Maybe en un futuro se puede añadir pero queda feo
 
     darkTheme: Boolean = false, //isSystemInDarkTheme(),
     dynamicColor: Boolean = false,

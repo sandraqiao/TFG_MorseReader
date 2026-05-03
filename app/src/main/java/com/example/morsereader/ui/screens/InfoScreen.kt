@@ -17,11 +17,4 @@ fun InfoScreen(modifier: Modifier = Modifier) {
         modifier = Modifier
             .fillMaxSize()
     )
-
-    /*Box(
-        modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(Screen.Info.title)
-    }*/
 }
